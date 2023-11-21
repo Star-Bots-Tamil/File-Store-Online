@@ -5,7 +5,7 @@ from os import getenv, environ
 
 # Online Stream and Download
 PORT = int(environ.get('PORT', 8080))
-NO_PORT = bool(environ.get('NO_PORT', False))
+NO_PORT = bool(environ.get('NO_PORT', True))
 APP_NAME = None
 if 'DYNO' in environ:
 	ON_HEROKU = True
@@ -17,48 +17,37 @@ FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN','lazy-
 URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else \
     "http://{}:{}/".format(FQDN, PORT)
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
-WORKERS = int(environ.get('WORKERS', '4'))
+WORKERS = int(environ.get('WORKERS', '7'))
 SESSION_NAME = str(environ.get('SESSION_NAME', 'LazyBot'))
 MULTI_CLIENT = False
 name = str(environ.get('name', 'LazyPrincess'))
 PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
 DISABLE_CHANNEL_BUTTON = bool(environ.get('DISABLE_CHANNEL_BUTTON', False))
-HAS_SSL=bool(getenv('HAS_SSL',False))
+HAS_SSL=bool(getenv('HAS_SSL', True))
 if HAS_SSL:
     URL = "https://{}/".format(FQDN)
 else:
     URL = "http://{}/".format(FQDN)
-UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', None))
+UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', "Star_Bots_Tamil"))
 BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001987654567")).split())) 
-STREAM_LOGS = environ.get('STREAM_LOGS','-1001895607162')
+STREAM_LOGS = environ.get('STREAM_LOGS','-1001821439025')
 SESSION = environ.get('SESSION','MissRozy')
 CUSTOM_CAPTION = environ.get('CUSTOM_CAPTION')
 
 
 class Config(object):
-	API_ID = int(os.environ.get("API_ID", 13323016))
-	API_HASH = os.environ.get("API_HASH", "13323016")
-	BOT_TOKEN = os.environ.get("BOT_TOKEN","6144687436:AAGShuVn551CQHCWjRkdoBIteGgV0SUWxBo")
-	BOT_USERNAME = os.environ.get("BOT_USERNAME" , "MissRozy_BOT")
-	DB_CHANNEL = int(os.environ.get("DB_CHANNEL", -1001772120203))
-	BOT_OWNER = int(os.environ.get("BOT_OWNER", "5965340120"))
-	DATABASE_URL = os.environ.get("DATABASE_URL","mongodb+srv://lazy:Zabintkhab7808@lazydev786.lpvunl5.mongodb.net/?retryWrites=true&w=majority")
-	UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "-1001765107260")
-	LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-1001895607162")
+	API_ID = int(os.environ.get("API_ID", "11973721"))
+	API_HASH = os.environ.get("API_HASH", "5264bf4663e9159565603522f58d3c18")
+	BOT_TOKEN = os.environ.get("BOT_TOKEN", "5777457260:AAEfAMULHIjj7P__22qSvoT9ygR-u2iANSE")
+	BOT_USERNAME = os.environ.get("BOT_USERNAME" , "UK_Movies_Bot")
+	BOT_OWNER = int(os.environ.get("BOT_OWNER", "1391556668"))
+	DATABASE_URL = os.environ.get("DATABASE_URL","mongodb+srv://KarthikMovies:KarthikUK007@cluster0.4l5byki.mongodb.net/?retryWrites=true&w=majority")
+	UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "-1001822021062")
+	LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-1001821439025")
 	BANNED_USERS = set(int(x) for x in os.environ.get("BANNED_USERS", "1234567890").split())
 	FORWARD_AS_COPY = bool(os.environ.get("FORWARD_AS_COPY", True))
-	BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", False))
-	LAZY_CHANNEL = int(os.environ.get('LAZY_CHANNEL','-100'))
-	LAZY_MODE = bool(os.environ.get("LAZY_MODE", False))
-	LAZY_PIC = os.environ.get("LAZY_PIC","https://telegra.ph/file/d382d2fad1fdd2a4ccca4.png")
-	LP_BTN_MAIN_CH_USRNM = os.environ.get("LP_BTN_MAIN_CH_USRNM")
-	LP_CHANNEL_USRNM = os.environ.get("LP_CHANNEL_USRNM")
-	LPCH_ADMIN_USRMN = os.environ.get("LPCH_ADMIN_USRMN")
-	LP_CUSTOM_TEMPLATE= os.environ.get("LP_CUSTOM_TEMPLATE")
-  # LP_CUSTOM_TEMPLATE= os.environ.get("LP_CUSTOM_TEMPLATE","{file_name} - example \n\n Please Upadate this template acording to you @LazyDeveloperr ")
-	BANNED_CHAT_IDS = list(set(int(x) for x in os.environ.get("BANNED_CHAT_IDS", "-1001362659779 -1001255795497").split()))
-	OTHER_USERS_CAN_SAVE_FILE = bool(os.environ.get("OTHER_USERS_CAN_SAVE_FILE", True))
-	AUTO_DELETE_TIME = int(os.environ.get('AUTO_DELETE_TIME', 20))
+	BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", True))
+	LAZY_PIC = os.environ.get("LAZY_PIC","https://graph.org/file/5793cf332eaa1102d0dab.jpg")
 
 	ABOUT_BOT_TEXT = f"""
 ᴛʜɪꜱ ɪꜱ ᴘᴇʀᴍᴀɴᴇɴᴛ ꜰɪʟᴇꜱ ꜱᴛᴏʀᴇ ʙᴏᴛ!

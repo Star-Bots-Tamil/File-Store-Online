@@ -575,31 +575,6 @@ async def Lazy_start():
                 await cmd.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)
                 return
 
-
-        elif "addToBatchTrue" in cb_data:
-            if MediaList.get(f"{str(cmd.from_user.id)}", None) is None:
-                MediaList[f"{str(cmd.from_user.id)}"] = []
-            file_id = cmd.message.reply_to_message.id
-            MediaList[f"{str(cmd.from_user.id)}"].append(file_id)
-            await cmd.message.edit("ꜰɪʟᴇ ꜱᴀᴠᴇᴅ ɪɴ ʙᴀᴛᴄʜ!\n\n"
-                                "ᴘʀᴇꜱꜱ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʙᴀᴛᴄʜ ʟɪɴᴋ.",
-                                reply_markup=InlineKeyboardMarkup([
-                                    [InlineKeyboardButton("⚡️ ɢᴇᴛ ʙᴀᴛᴄʜ & ᴘᴏꜱᴛ ⚡️", callback_data="getBatchLink")],
-                                    [InlineKeyboardButton("Close Message", callback_data="closeMessage")]
-                                ]))
-
-        elif "addToBatchFalse" in cb_data:
-            await save_media_in_channel(bot, editable=cmd.message, message=cmd.message.reply_to_message)
-
-        elif "getBatchLink" in cb_data:
-            message_ids = MediaList.get(f"{str(cmd.from_user.id)}", None)
-            if message_ids is None:
-                await cmd.answer("ʙᴀᴛᴄʜ ʟɪꜱᴛ ᴇᴍᴘᴛʏ!", show_alert=True)
-                return
-            await cmd.message.edit("ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ɢᴇɴᴇʀᴀᴛɪɴɢ ʙᴀᴛᴄʜ ʟɪɴᴋ...")
-            await save_batch_media_in_channel(bot=bot, editable=cmd.message, message_ids=message_ids)
-            MediaList[f"{str(cmd.from_user.id)}"] = []
-
         elif "closeMessage" in cb_data:
             await cmd.message.delete(True)
 
@@ -614,7 +589,7 @@ async def Lazy_start():
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0" if ON_HEROKU else BIND_ADRESS
-    await web.TCPSite(app, bind_address, PORT).start()
+    await web.TCPSite(app, "0.0.0.0", PORT).start()
     await idle()
 
 

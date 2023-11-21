@@ -3,7 +3,7 @@
 import os
 import asyncio
 import traceback
-lazy_pic = os.environ.get("LAZY_PIC","")
+lazy_pic = os.environ.get("LAZY_PIC","https://graph.org/file/2ae5861238c1dc4fd534e.jpg")
 from binascii import (
     Error
 )
@@ -27,8 +27,6 @@ from configs import Config
 from configs import *
 from handlers.database import db
 from handlers.add_user_to_db import add_user_to_database
-from handlers.send_file import send_media_and_reply
-from handlers.helpers import b64_to_str, str_to_b64
 from handlers.check_user_status import handle_user_status
 from handlers.force_sub_handler import (
     handle_force_sub,
@@ -48,17 +46,12 @@ logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
 
 from handlers.broadcast_handlers import main_broadcast_handler
-from handlers.save_media import (
-    save_media_in_channel,
-    save_batch_media_in_channel
-)
 from util.human_readable import humanbytes
 from urllib.parse import quote_plus
 from util.file_properties import get_name, get_hash, get_media_file_size
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from handlers.send_file import media_forward
 from pyrogram import idle
 from lazybot import Bot
 from util.keepalive import ping_server
@@ -66,11 +59,9 @@ from lazybot.clients import initialize_clients
 from aiohttp import web
 from handlers import web_server
 from pyrogram import Client, __version__
-from handlers.helpers import  decode, get_messages
 from pyrogram.enums import ParseMode
 import sys
 
-MediaList = {}
 Bot.start()
 loop = asyncio.get_event_loop()
 
